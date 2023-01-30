@@ -23,9 +23,9 @@ float4 main(VSOutput input) : SV_TARGET
 
 	float3 eyedir = normalize(cameraPos - input.worldpos.xyz);
 
-	//float3 dotightnormal = dot(lightv,input.normal);
+	float3 dotightnormal = dot(lightv,input.normal);
 
-	//float3 reflect = normalize(-lightv + 2 * dotightnormal * input.normal);
+	float3 reflect = normalize(-lightv + 2 * dotightnormal * input.normal);
 
 	float3 ambient = m_ambient;
 	//float4 shadecolor = float4(ambientColor * ambient, m_alpha);

@@ -3,7 +3,6 @@
 #include <cassert>
 #include <sstream>
 #include <iomanip>
-#include <imgui.h>
 
 using namespace DirectX;
 
@@ -109,9 +108,9 @@ void GameScene::Update()
 		if (input->PushKey(DIK_D)) { lightDir.m128_f32[0] += 1.0f; };
 		if (input->PushKey(DIK_A)) { lightDir.m128_f32[0] -= 1.0f; };
 
-		//light->SetLightDir(light);
+		light->SetLightDir(lightDir);
 		//light->SetLight(light);
-		objFighter->SetLight(light);
+		//objFighter->SetLight(light);
 
 		std::ostringstream debugstr;
 		debugstr << "lightDirFactor("
@@ -145,35 +144,15 @@ void GameScene::Update()
 
 	objSphere->Update();
 
-	debugText.Print("AD: move camera LeftRight", 50, 50, 1.0f);
-	debugText.Print("WS: move camera UpDown", 50, 70, 1.0f);
-	debugText.Print("ARROW: move camera FrontBack", 50, 90, 1.0f);
+	debugText.Print("AD: move camera LeftRight", 50, 80, 1.0f);
+	debugText.Print("WS: move camera UpDown", 50, 100, 1.0f);
+	debugText.Print("ARROW: move camera FrontBack", 50, 120, 1.0f);
 }
 
 void GameScene::Draw()
 {
 	// コマンドリストの取得
 	ID3D12GraphicsCommandList* cmdList = dxCommon->GetCommandList();
-
-#pragma region imugui
-
-	//ImGui::Begin("Light");
-	//ImGui::SetWindowPos(ImVec2(0, 0));
-	//ImGui::SetWindowSize(ImVec2(500, 200));
-
-	//ImGui::ColorEdit3("ambientColor", ambientColor0, ImGuiColorEditFlags_Float);
-
-	//ImGui::InputFloat3("lightDir0", lightDir0);
-	//ImGui::ColorEdit3("lightColor0", lightColor0, ImGuiColorEditFlags_Float);
-
-	//ImGui::InputFloat3("lightDir1", lightDir1);
-	//ImGui::ColorEdit3("lightColor1", lightColor1, ImGuiColorEditFlags_Float);
-
-	//ImGui::InputFloat3("lightDir2", lightDir2);
-	//ImGui::ColorEdit3("lightColor2", lightColor2, ImGuiColorEditFlags_Float);
-
-	//ImGui::End();
-#pragma endregion
 
 #pragma region 背景スプライト描画
 	// 背景スプライト描画前処理
