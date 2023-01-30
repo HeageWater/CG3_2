@@ -8,7 +8,8 @@
 #include <string>
 #include "Model.h"
 #include "Camera.h"
-#include "LightGroup.h"
+//#include "LightGroup.h"
+#include "DirectionalLight.h"
 
 /// <summary>
 /// 3Dオブジェクト
@@ -24,8 +25,8 @@ private: // エイリアス
 	using XMFLOAT4 = DirectX::XMFLOAT4;
 	using XMMATRIX = DirectX::XMMATRIX;
 
-	//static DirectionalLight* light;
-	static LightGroup* lightGroup;
+	static DirectionalLight* light;
+	//static LightGroup* lightGroup;
 
 public: // サブクラス	
 
@@ -86,13 +87,13 @@ public: // 静的メンバ関数
 	/// <returns></returns>
 	static Object3d* Create();
 
-	/*static void SetLight(DirectionalLight* light) {
+	static void SetLight(DirectionalLight* light) {
 		Object3d::light = light;
-	}*/
-
-	static void SetLightGroup(LightGroup* lightGroup) {
-		Object3d::lightGroup = lightGroup;
 	}
+
+	/*static void SetLightGroup(LightGroup* lightGroup) {
+		Object3d::lightGroup = lightGroup;
+	}*/
 
 private: // 静的メンバ変数
 	// デバイス

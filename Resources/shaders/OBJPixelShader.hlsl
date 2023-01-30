@@ -17,7 +17,7 @@ float4 main(VSOutput input) : SV_TARGET
 	//float4 texcolor = tex.Sample(smp, input.uv);
 	//return float4(texcolor.rgb * shade_color, texcolor.a * m_alpha);
 
-	//float4 shadecolor;
+	float4 shadecolor;
 
 	const float shininess = 4.0f;
 
@@ -28,16 +28,16 @@ float4 main(VSOutput input) : SV_TARGET
 	//float3 reflect = normalize(-lightv + 2 * dotightnormal * input.normal);
 
 	float3 ambient = m_ambient;
-	float4 shadecolor = float4(ambientColor * ambient, m_alpha);
+	//float4 shadecolor = float4(ambientColor * ambient, m_alpha);
 
-	//float3 diffuse = dotightnormal * m_diffuse;
+	float3 diffuse = dotightnormal * m_diffuse;
 
-	//float3 specular = pow(saturate(dot(reflect,eyedir)),shininess) * m_specular;
+	float3 specular = pow(saturate(dot(reflect,eyedir)),shininess) * m_specular;
 
-	//shadecolor.rgb = (ambient + diffuse + specular) * lightcolor;
-	//shadecolor.a = m_alpha;
+	shadecolor.rgb = (ambient + diffuse + specular) * lightcolor;
+	shadecolor.a = m_alpha;
 
-	for (int i = 0; i < DIR_LIGHT_NUM; i++)
+	/*for (int i = 0; i < DIR_LIGHT_NUM; i++)
 	{
 		if (dirLights[i].active)
 		{
@@ -45,8 +45,10 @@ float4 main(VSOutput input) : SV_TARGET
 			float3 reflect = normalize(-dirLights[i].lightv + 2 * dotightnormal * input.normal);
 			float3 diffuse = dotightnormal * m_diffuse;
 			float3 specular = pow(saturate(dot(reflect, eyedir)), shininess) * m_specular;
+
+			shadecolor.rgb += (diffuse + specular) * dirLights[i].lightcolor;
 		}
-	}
+	}*/
 
 	return shadecolor * texcolor;
 }

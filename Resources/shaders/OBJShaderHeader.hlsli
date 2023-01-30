@@ -14,26 +14,26 @@ cbuffer cbuff1 : register(b1)
 	float m_alpha : packoffset(c2.w);	// アルファ
 }
 
-//cbuffer cbuff2 : register(b2)
-//{
-//	float3 lightv;
-//	float3 lightcolor;
-//}
-
-static const uint DIR_LIGHT_NUM = 3;
-
-struct DirLight
+cbuffer cbuff2 : register(b2)
 {
 	float3 lightv;
 	float3 lightcolor;
-	uint active;
-};
-
-cbuffer cbuff2 : register(b2)
-{
-	float3 ambientColor;
-	DirLight dirLights[DIR_LIGHT_NUM];
 }
+
+//static const uint DIR_LIGHT_NUM = 3;
+//
+//struct DirLight
+//{
+//	float3 lightv;
+//	float3 lightcolor;
+//	uint active;
+//};
+//
+//cbuffer cbuff2 : register(b2)
+//{
+//	float3 ambientColor;
+//	DirLight dirLights[DIR_LIGHT_NUM];
+//}
 
 // 頂点シェーダーからピクセルシェーダーへのやり取りに使用する構造体
 struct VSOutput

@@ -19,8 +19,8 @@ ID3D12GraphicsCommandList* Object3d::sCommandList = nullptr;
 Object3d::PipelineSet Object3d::pipelineSet;
 Camera* Object3d::sCamera_ = nullptr;
 
-//DirectionalLight* Object3d::light = nullptr;
-LightGroup* Object3d::lightGroup = nullptr;
+DirectionalLight* Object3d::light = nullptr;
+//LightGroup* Object3d::lightGroup = nullptr;
 
 void Object3d::StaticInitialize(ID3D12Device* device, Camera* camera) {
 	// nullptrチェック
@@ -297,8 +297,8 @@ void Object3d::Draw() {
 	sCommandList->SetGraphicsRootConstantBufferView(0, constBuffB0->GetGPUVirtualAddress());
 
 	//ライト描画
-	//light->Draw(sCommandList,3);
-	lightGroup->Draw(sCommandList,3);
+	light->Draw(sCommandList,3);
+	//lightGroup->Draw(sCommandList,3);
 
 	// モデル描画
 	model->Draw(sCommandList);

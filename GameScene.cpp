@@ -84,12 +84,12 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input)
 	objSphere->SetPosition({ -1, 1, 0 });
 
 	//ライト生成
-	/*light = DirectionalLight::Create();
+	light = DirectionalLight::Create();
 	light->SetLightColor({ 1,1,1 });
-	Object3d::SetLight(light);*/
+	Object3d::SetLight(light);
 
-	lightGroup = LightGroup::Create();
-	Object3d::SetLightGroup(lightGroup);
+	//lightGroup = LightGroup::Create();
+	//Object3d::SetLightGroup(lightGroup);
 }
 
 void GameScene::Update()
@@ -102,14 +102,16 @@ void GameScene::Update()
 	}
 
 	{
-		/*static XMVECTOR lightDir = { 0,1,5,0 };
+		static XMVECTOR lightDir = { 0,1,5,0 };
 
 		if (input->PushKey(DIK_W)) { lightDir.m128_f32[1] += 1.0f; };
 		if (input->PushKey(DIK_S)) { lightDir.m128_f32[1] -= 1.0f; };
 		if (input->PushKey(DIK_D)) { lightDir.m128_f32[0] += 1.0f; };
 		if (input->PushKey(DIK_A)) { lightDir.m128_f32[0] -= 1.0f; };
 
-		light->SetLightDir(lightDir);
+		//light->SetLightDir(light);
+		//light->SetLight(light);
+		objFighter->SetLight(light);
 
 		std::ostringstream debugstr;
 		debugstr << "lightDirFactor("
@@ -117,11 +119,11 @@ void GameScene::Update()
 			<< lightDir.m128_f32[0]<<","
 			<< lightDir.m128_f32[1]<<","
 			<< lightDir.m128_f32[2]<<")";
-		debugText.Print(debugstr.str(),50,50,1.0f);*/
+		debugText.Print(debugstr.str(),50,50,1.0f);
 	}
 
 	{
-		lightGroup->SetAmbientColor(XMFLOAT3(ambientColor0));
+		/*lightGroup->SetAmbientColor(XMFLOAT3(ambientColor0));
 		lightGroup->SetDirLightDir(0, XMVECTOR({ lightDir0[0], lightDir0[1], lightDir0[2],0 }));
 		lightGroup->SetDirLightColor(0, XMFLOAT3(lightColor0));
 
@@ -129,11 +131,11 @@ void GameScene::Update()
 		lightGroup->SetDirLightColor(0, XMFLOAT3(lightColor1));
 
 		lightGroup->SetDirLightDir(0, XMVECTOR({ lightDir2[0], lightDir2[1], lightDir2[2],0 }));
-		lightGroup->SetDirLightColor(0, XMFLOAT3(lightColor2));
+		lightGroup->SetDirLightColor(0, XMFLOAT3(lightColor2));*/
 
 	}
 
-	lightGroup->Update();
+	light->Update();
 	//light2->Update();
 	camera->Update();
 
@@ -155,22 +157,22 @@ void GameScene::Draw()
 
 #pragma region imugui
 
-	ImGui::Begin("Light");
-	ImGui::SetWindowPos(ImVec2(0, 0));
-	ImGui::SetWindowSize(ImVec2(500, 200));
+	//ImGui::Begin("Light");
+	//ImGui::SetWindowPos(ImVec2(0, 0));
+	//ImGui::SetWindowSize(ImVec2(500, 200));
 
-	ImGui::ColorEdit3("ambientColor", ambientColor0, ImGuiColorEditFlags_Float);
+	//ImGui::ColorEdit3("ambientColor", ambientColor0, ImGuiColorEditFlags_Float);
 
-	ImGui::InputFloat3("lightDir0", lightDir0);
-	ImGui::ColorEdit3("lightColor0", lightColor0, ImGuiColorEditFlags_Float);
+	//ImGui::InputFloat3("lightDir0", lightDir0);
+	//ImGui::ColorEdit3("lightColor0", lightColor0, ImGuiColorEditFlags_Float);
 
-	ImGui::InputFloat3("lightDir1", lightDir1);
-	ImGui::ColorEdit3("lightColor1", lightColor1, ImGuiColorEditFlags_Float);
+	//ImGui::InputFloat3("lightDir1", lightDir1);
+	//ImGui::ColorEdit3("lightColor1", lightColor1, ImGuiColorEditFlags_Float);
 
-	ImGui::InputFloat3("lightDir2", lightDir2);
-	ImGui::ColorEdit3("lightColor2", lightColor2, ImGuiColorEditFlags_Float);
+	//ImGui::InputFloat3("lightDir2", lightDir2);
+	//ImGui::ColorEdit3("lightColor2", lightColor2, ImGuiColorEditFlags_Float);
 
-	ImGui::End();
+	//ImGui::End();
 #pragma endregion
 
 #pragma region 背景スプライト描画

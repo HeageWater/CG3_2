@@ -31,8 +31,8 @@ int WINAPI WinMain(HINSTANCE,HINSTANCE,LPSTR,int)
 	Object3d::StaticInitialize(dxCommon->GetDevice());
 
 	//ライト静的初期化
-	//DirectionalLight::StaticInitialize(dxCommon->GetDevice());
-	LightGroup::StaticInitialize(dxCommon->GetDevice());
+	DirectionalLight::StaticInitialize(dxCommon->GetDevice());
+	//LightGroup::StaticInitialize(dxCommon->GetDevice());
 #pragma endregion
 
 	// ゲームシーンの初期化
