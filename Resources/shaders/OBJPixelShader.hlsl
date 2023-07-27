@@ -45,6 +45,8 @@ float4 main(VSOutput input) : SV_TARGET
 			float3 reflect = normalize(-dirLights[i].lightv + 2 * dotightnormal * input.normal);
 			float3 diffuse = dotightnormal * m_diffuse;
 			float3 specular = pow(saturate(dot(reflect, eyedir)), shininess) * m_specular;
+
+			shadecolor.rgb += (diffuse + specular) * dirLights[i].lightcolor;
 		}
 	}
 
